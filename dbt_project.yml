@@ -1,7 +1,13 @@
+
+
+# dbt_project.yml
 name: 'jaffle_shop'
+version: '0.1'
+dbt-cloud: 
+    project-id: 320989
 
 config-version: 2
-version: '0.1'
+
 
 profile: 'jaffle_shop'
 
@@ -16,9 +22,18 @@ clean-targets:
     - "target"
     - "dbt_modules"
     - "logs"
-
+  
+## Why?
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
+vars:
+  # (optional) to create db table in the schema named as AUDIT, default to `target.schema` if not specified
+  dbt_dq_tool_schema: AUDIT
+
+on-run-end:
+  - '{{ dq_tools.store_test_results(results) }}'
+
+## 
 models:
   jaffle_shop:
       materialized: table
