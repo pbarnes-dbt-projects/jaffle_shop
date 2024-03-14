@@ -9,7 +9,7 @@ dbt-cloud:
 config-version: 2
 
 
-profile: 'jaffle_shop'
+profile: 'penny_core'
 
 model-paths: ["models"]
 seed-paths: ["seeds"]
@@ -17,7 +17,7 @@ test-paths: ["tests"]
 analysis-paths: ["analysis"]
 macro-paths: ["macros"]
 
-target-path: "target"
+target-path: "./"
 clean-targets:
     - "target"
     - "dbt_modules"
